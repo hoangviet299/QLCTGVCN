@@ -4,6 +4,7 @@ import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { FileNotFoundComponent } from './shared/file-not-found/file-not-found.component';
 import { AuthGuard } from './lib/auth.guard';
+import { CommonModule } from "@angular/common";
 
 const routes: Routes = [
   {
@@ -22,7 +23,7 @@ const routes: Routes = [
 ];
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),CommonModule
   ],
   exports: [RouterModule],
 })

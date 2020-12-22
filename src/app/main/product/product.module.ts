@@ -7,10 +7,13 @@ import { LophocComponent } from './lophoc/lophoc.component';
 import { KhoaComponent } from './khoa/khoa.component';
 import { GvcnComponent } from './gvcn/gvcn.component';
 import { SinhvienComponent } from './sinhvien/sinhvien.component';
+import { BaocaoComponent } from './baocao/baocao.component';
+import { LichctComponent } from './lichct/lichct.component';
+import { CongviecComponent } from './congviec/congviec.component';
 
 @NgModule({
   declarations: [ 
-    ProductComponent, LophocComponent, KhoaComponent, GvcnComponent, SinhvienComponent
+    ProductComponent, LophocComponent, KhoaComponent, GvcnComponent, SinhvienComponent, BaocaoComponent, LichctComponent, CongviecComponent
   ],
   imports: [
     CommonModule,
@@ -35,6 +38,18 @@ import { SinhvienComponent } from './sinhvien/sinhvien.component';
       {
         path: 'lophoc',
         component: LophocComponent,
+      },
+      {
+        path: 'baocao',
+        component: BaocaoComponent,
+      },
+      {
+        path: 'lichct',
+        component: LichctComponent,
+      },
+      {
+        path: 'congviec',
+        component: CongviecComponent,
       },
   ]),  
   ]

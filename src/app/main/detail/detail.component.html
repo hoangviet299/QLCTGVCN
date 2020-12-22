@@ -1,0 +1,139 @@
+<!-- 
+
+ <table class="table">
+    <thead>
+      <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr >
+        <td>{{ProductDetail.tenlichct}}</td>
+        <td>{{ProductDetail.noidung}}</td>
+        <td>{{ProductDetail.trangthai}}</td>
+        </tr>
+    </tbody>
+  </table> -->
+<!-- <div *ngFor="let item of lichct">
+    <div class="body">
+        <div class="row">
+            <div class="col-sm-12 col-xs-12">
+                <div class="form-group">
+                    <h2 style="text-transform: uppercase;">
+                        <b></b>
+                    </h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-xs-12">
+                <div class="form-group">
+                    <h4><b>{{item.tenlichct}}</b></h4>
+                </div>
+            </div>
+        </div>
+        <div class="table-custom">
+            <table class="table" style="width: 100%">
+                <tr>
+                    <td style="width: 20%">Thời gian thực hiện</td>
+
+                    <td style="width: 80%">Từ ngày {{item.ngaybd}} đến {{item.ngaykt}} </td>
+                </tr> -->
+                <!-- <tr>
+                    <td style="width: 20%">Loại lịch công tác</td>
+                    <td style="width: 80%">@typecalByID.TypeName</td>
+                </tr>
+              
+                <tr>
+                    <td style="width: 20%">Giáo viên chủ nhiệm</td>
+                    <td style="width: 80%">@teacherbyID.Name_Teacher&nbsp;<span class="fa fa-user"></span></td>
+                </tr>    -->
+                <!-- <tr>
+                    <td style="width: 20%">Nội dung công việc</td>
+                    <td style="width: 80%">{{item.noidung}}
+                    </td>
+                </tr>
+               
+
+            </table>
+           
+            <br />
+        </div>
+        <br />
+        <br />
+        <div class="row" style="text-align: center;">
+            <a class="btn btn-primary" routerLink="/" >Xem chi tiết</a>
+            <button class="btn btn-search" style="background-color:orangered; color: white">
+                <span></span><i class="fa fa-undo"></i>&nbsp;<a routerLink="../">Quay lại</a>
+            </button>
+        </div>
+    </div>
+</div> -->
+<h3 style="text-align: center;"><b>Thông Tin Lịch Công Tác</b></h3>
+
+<form class="form-horizontal utehy-form" style="margin-left: 330px;">
+<div class="modal-body no-padding">
+<div class="form-group" >
+<label class="col-sm-2 control-label  " style="text-align: left;">Tên Lịch :</label>
+<div class="col-sm-5">
+<input type="text" placeholder="" value="{{ProductDetail.tencv}}" readonly/>
+</div>
+</div>
+
+<div class="form-group" >
+<label class="col-sm-2 control-label " style="text-align: left;">Nội Dung :</label>
+<div class="col-sm-5">
+<input type="text" placeholder="" value="{{ProductDetail.mota}}" readonly/>
+</div>
+</div>
+
+<div class="form-group" >
+<label class="col-sm-2 control-label " style="text-align: left;">Trạng Thái :</label>
+<div class="col-sm-5">
+<input type="text" placeholder="" value="{{ProductDetail.trangthai}}" readonly/>
+</div>
+</div>
+
+
+<div class="form-group" >
+<label class="col-sm-2 control-label " style="text-align: left;">Ngày Bắt Đầu :</label>
+<div class="col-sm-5">
+<input type="text" placeholder="" value="{{ProductDetail.ngaybd}}" readonly/>
+</div>
+</div>
+
+<div class="form-group">
+<label class="col-sm-2 control-label " style="text-align: left;">Ngày Kết Thúc :</label>
+<div class="col-sm-5">
+<input type="text" placeholder="" value="{{ProductDetail.ngaykt}}" readonly/>
+</div>
+</div>
+<!-- <div class="form-group" style="text-align: right;" >
+<label class="col-sm-2 control-label " style="text-align: left;"> Tài Khoản :</label>
+<div class="col-sm-5">
+<input type="text" placeholder="" value="{{usser.taikhoan}}" readonly/>
+</div>
+</div>
+<div class="form-group" style="text-align: right;" >
+<label class="col-sm-2 control-label " style="text-align: left;">Ảnh đại diện :</label>
+<div class="col-sm-5">
+<th><img src="{{usser.image_url}}" style="height: 200px;width: 200px;"></th>
+</div>
+</div> -->
+
+</div>
+
+<!-- <div class="modal-footer" style="width: 300px;">
+<button type="submit" class="btn btn-success btn-sm btn-submit" style="margin-right: 90px;">
+<i class="fa fa-save">Xem Chi Tiết</i>
+</button>
+</div> -->
+<div class="row" style="margin-left: 180px;">
+    <a class="btn btn-primary" routerLink="/" >Xem chi tiết</a>
+    <button class="btn btn-search" style="background-color:orangered; color: white">
+        <span></span><i class="fa fa-undo"></i>&nbsp;<a routerLink="../../">Quay lại</a>
+    </button>
+</div>
+</form>

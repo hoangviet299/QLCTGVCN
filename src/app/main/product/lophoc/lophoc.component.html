@@ -40,8 +40,8 @@
           <tr>
             <th style="width: 70px; text-align: center;">STT</th>
             <th style="width: 15%; text-align: left;">Tên Lớp</th>
-            <th style="width: 15%; text-align: left;">Mã Khoa</th>
-            <th style="width: 20%; text-align: left;">Địa Chỉ</th>
+            <th style="width: 15%; text-align: left;">Địa Chỉ</th>
+            <th style="width: 15%; text-align: left;">Tên Khoa</th>
             <th style="width: 120px; text-align: left;">Tác vụ</th>
           </tr>
         </ng-template>
@@ -49,8 +49,8 @@
           <tr>
             <td style="width: 70px; text-align: center;">{{ i + 1 }}</td>
             <td>{{ item.tenlop }}</td>
-            <td>{{ item.makhoa }}</td>
-            <td>{{ item.diachi }}</td>
+            <td>{{ item.diachilop }}</td>
+            <td>{{ item.tenkhoa }}</td>
             <td class="action-col" >
               <div class="btn-group">
                 <button title="" class="btn btn-xs btn-white btn-default"  (click)="openUpdateModal(item)">  
@@ -102,9 +102,9 @@
                 </div>
                 <label class="col-sm-2 control-label no-padding-right">địa chỉ(<span style="color: red;">*</span>)</label>
                 <div class="col-sm-5">
-                  <input type="text" placeholder="địa chỉ" formControlName="diachi"/>
-                  <div *ngIf="submitted && f.diachi.errors" class="invalid-feedback">
-                    <div *ngIf="f.diachi.errors.required">địa chỉ là bắt buộc</div>
+                  <input type="text" placeholder="địa chỉ" formControlName="diachilop"/>
+                  <div *ngIf="submitted && f.diachilop.errors" class="invalid-feedback">
+                    <div *ngIf="f.diachilop.errors.required">địa chỉ là bắt buộc</div>
                   </div>
                 </div>
                 

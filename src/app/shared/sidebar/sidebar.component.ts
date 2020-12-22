@@ -8,8 +8,9 @@ declare let $: any;
 export class SidebarComponent implements OnInit, AfterViewInit {
   public menus = [
   {name :'Người dùng', url:'',icon:'user',childs:[{name:'Quản lý người dùng',url:'user/user'},{name:'Đăng xuất', url:''},{name:'Đăng nhập', url:'/login'}]},
-  {name:'Quản Lý Danh Mục',url:'',icon:'signal',childs:[{name:'Quản lý Khoa',url:'/product/khoa'},{name:'Quản lý lớp học',url:'/product/lophoc'},{name:'Quản lý GVCN',url:'/product/gvcn'},{name:'Quản lý Sinh Viên',url:'/product/sinhvien'},{name:'Quản lý',url:'/product/product'}]},
-  {name:'Quản Lý CT GVCN',url:'',icon:'signal',childs:[{name:'Quản lý HS',url:'/product/order'}]}];
+  {name:'Quản Lý Danh Mục',url:'',icon:'signal',childs:[{name:'Quản lý Khoa',url:'/product/khoa'},{name:'Quản lý lớp học',url:'/product/lophoc'},{name:'Quản lý GVCN',url:'/product/gvcn'},{name:'Quản lý Sinh Viên',url:'/product/sinhvien'},{name:'Quản lý lịch công tác',url:'/product/lichct'},{name:'Quản lý công việc',url:'/product/congviec'},{name:'Quản lý Báo Cáo',url:'/product/baocao'}]},
+  
+  ];
   
   constructor() { } 
   ngOnInit(): void {

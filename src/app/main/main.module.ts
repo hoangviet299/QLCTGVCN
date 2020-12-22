@@ -11,6 +11,11 @@ import { Role } from '../models/role';
 import { SharedModule } from '../shared/shared.module';
 import { UnauthorizedComponent } from '../shared/unauthorized/unauthorized.component';
 import { FileNotFoundComponent } from '../shared/file-not-found/file-not-found.component';
+import { BaocaoComponent } from './baocao/baocao.component';
+import { NguoidungComponent } from './nguoidung/nguoidung.component';
+import { DskhoaComponent } from './dskhoa/dskhoa.component';
+import { DssvComponent } from './dssv/dssv.component';
+import { DetailComponent } from './detail/detail.component';
 export const mainRoutes: Routes = [
   {
     path: '',
@@ -19,6 +24,18 @@ export const mainRoutes: Routes = [
       {
         path: '',
         component: DashboardComponent,
+      },
+      {
+        path: 'dskhoa',
+        component: DskhoaComponent,
+      },
+      {
+        path: 'dssv',
+        component: DssvComponent,
+      },
+      {
+        path: 'detail/:macv',
+        component: DetailComponent,
       },
       {
         path: 'not-found',
@@ -40,8 +57,30 @@ export const mainRoutes: Routes = [
         loadChildren: () =>
           import('./product/product.module').then((m) => m.ProductModule),
         canActivate: [RoleGuard],
+        data: { roles: [Role.Admin] },
+      },
+      {
+        path: 'dashboard',
+        loadChildren: () =>
+          import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
+        canActivate: [RoleGuard],
         data: { roles: [Role.Admin, Role.User] },
       },
+      {
+        path: 'dskhoa',
+        loadChildren: () =>
+          import('./dskhoa/dskhoa.module').then((m) => m.DskhoaModule),
+        canActivate: [RoleGuard],
+        data: { roles: [Role.Admin, Role.User] },
+      },
+      {
+        path: 'dssv',
+        loadChildren: () =>
+          import('./dssv/dssv.module').then((m) => m.DssvModule),
+        canActivate: [RoleGuard],
+        data: { roles: [Role.Admin, Role.User] },
+      },
+      
     ],
   },
 ];
@@ -51,6 +90,12 @@ export const mainRoutes: Routes = [
     FooterComponent,
     NavbarComponent,
     MainComponent,
+    BaocaoComponent,
+    NguoidungComponent,
+    DashboardComponent,
+    DskhoaComponent,
+    DssvComponent,
+    DetailComponent,
   ],
   imports: [SharedModule, CommonModule, RouterModule.forChild(mainRoutes)],
 })

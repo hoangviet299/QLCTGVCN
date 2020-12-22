@@ -1,0 +1,82 @@
+<div class="breadcrumbs" id="breadcrumbs">
+    <ul class="breadcrumb">
+      <li>
+        <i class="ace-icon fa fa-home home-icon"></i>
+        <a href="#">Trang chủ</a>
+      </li>
+      <li class="active">Quản lý Khoa</li>
+    </ul>
+   
+  </div>
+  <div class="row">
+    <div class="row">
+        <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+            <li role="presentation" class="active">
+                <a routerLink="" id="home-tab" style="margin-left: 20px;">Lịch công tác</a>
+            </li>
+          
+            <li role="presentation" class="">
+                <a routerLink="../dskhoa" style="background-color: #847878;
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                cursor: pointer;" >Danh sách Khoa</a>
+            </li>
+            <li role="presentation" class="">
+                <a routerLink="../dssv" >Danh sách sinh viên</a>
+            </li>
+      
+            <li role="presentation">
+                <a routerLink="congviec">Ghi chú công việc</a>
+            </li>
+            <li role="presentation">
+                <a routerLink="dashboard/baocao">Tạo Báo cáo tháng</a>
+            </li>
+           
+           
+            
+            <li role="presentation">
+                <a>Tiện ích</a>
+            </li>
+        </ul>
+      </div>
+    <div class="col-xs-12">
+      <!-- PAGE CONTENT BEGINS -->
+     
+      <p-table selectionMode="single" [value]="khoas" styleClass="p-datatable-gridlines">
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width: 70px; text-align: center;">STT</th>
+            <th style="width: 15%; text-align: left;">Tên Khoa</th>
+            <th style="width: 15%; text-align: left;">Địa Chỉ</th>
+            <th style="width: 15%; text-align: left;">Ngày Thành Lập</th>
+            <th style="width: 15%; text-align: left;">Danh sách giáo viên</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item  let-i="rowIndex">
+          <tr>
+            <td style="width: 70px; text-align: center;">{{ i + 1 }}</td>
+            <td>{{ item.tenkhoa }}</td>
+            <td>{{ item.diachi }}</td>
+            <td>{{ item.ngaythanhlap }}</td>
+            <td><a routerLink="danhsachgv">Danh sách giáo viên khoa {{ item.tenkhoa }}</a></td>
+            
+          </tr>
+        </ng-template>
+      </p-table>
+      <!-- PAGE CONTENT ENDS -->
+    </div>
+    <div class="col-xs-12" style="text-align: right;">
+      <ngb-pagination [collectionSize]="totalRecords" [pageSize]="pageSize" [(page)]="page" [maxSize]="10" [rotate]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+    </div>
+    
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
+  
+   

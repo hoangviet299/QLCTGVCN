@@ -11,6 +11,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorInterceptor } from './lib/error.interceptor';
 import { JwtInterceptor } from './lib/jwt.interceptor';
 import {FormsModule} from '@angular/forms';
+import { CommonModule } from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {FormsModule} from '@angular/forms';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    CommonModule,
     
   ],
   providers: [

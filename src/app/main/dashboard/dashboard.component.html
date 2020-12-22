@@ -2,17 +2,96 @@
   <ul class="breadcrumb">
     <li>
       <i class="ace-icon fa fa-home home-icon"></i>
-      <a >Bàn làm việc</a>
+      <a >Hệ Thống Quản Lý Công Tác Giáo Viên Chủ Nhiệm</a>
     </li> 
   </ul><!-- /.breadcrumb -->
 </div>
   
-  <div class="page-content"> 
-    <div class="row">
-      <div class="col-xs-12">
-        <!-- PAGE CONTENT BEGINS -->
-                    Bàn làm việc
-        <!-- PAGE CONTENT ENDS -->
-      </div><!-- /.col -->
-    </div><!-- /.row -->
-  </div><!-- /.page-content -->
+
+<div class="row">
+  <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+      <li role="presentation" class="active">
+          <a id="home-tab" style="margin-left:15px;" >Lịch công tác</a>
+      </li>
+    
+      <li role="presentation" class="">
+          <a routerLink="dskhoa">Danh sách khoa</a>
+      </li>
+      <li role="presentation" class="">
+          <a routerLink="dssv">Danh sách sinh viên</a>
+      </li>
+
+      <li role="presentation">
+          <a routerLink="congviec">Ghi chú công việc</a>
+      </li>
+      <li role="presentation">
+          <a routerLink="dashboard/baocao">Tạo Báo cáo tháng</a>
+      </li>
+     
+     
+      
+      <li role="presentation">
+          <a>Tiện ích</a>
+      </li>
+  </ul>
+</div>
+<div id="myTabContent" class="tab-content">
+  <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+      <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="x_panel">
+                  <div class="x_title">
+                      <h2>Lịch công tác giáo viên chủ nhiệm</h2>
+                      
+                      <div >
+                        <p-panel header="Tìm kiếm" [style]="{'margin-top': '2px'}">
+                          <form class="form-horizontal" role="form" [formGroup]="formsearch"  (ngSubmit)="search()">
+                          
+                            <div class="form-group">
+                              <label class="col-sm-1 control-label no-padding-right"> Tên Lịch CT</label>
+                              <div class="col-sm-11">
+                                <input formControlName="tencv"  type="text" placeholder="Tên Công Việc" style="width: 100%;" />
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="col-sm-1 control-label no-padding-right"></label>
+                              <div class="col-sm-11">
+                                <button (click)="search()" class="btn btn-sm btn-primary">Tìm kiếm</button>
+                              </div>
+                            </div>
+                          </form> 
+                        </p-panel>
+                        <p-table selectionMode="single" [value]="congviecs" styleClass="p-datatable-gridlines">
+                          <ng-template pTemplate="header">
+                            <tr>
+                              <th style="width: 70px; text-align: center;">STT</th>
+                              <th style="width: 15%; text-align: left;">Tên Công Việc</th>
+                              <th style="width: 15%; text-align: left;">Nội Dung</th>
+                              <th style="width: 15%; text-align: left;">Ngày Bắt Đầu</th>
+                              <th style="width: 15%; text-align: left;">Ngày KT</th>
+                              <th style="width: 20%; text-align: left;">Trạng Thái</th>
+                             
+                            </tr>
+                          </ng-template>
+                          <ng-template pTemplate="body" let-item  let-i="rowIndex">
+                            <tr>
+                              <td style="width: 70px; text-align: center;">{{ i + 1 }}</td>
+                              <td><a [routerLink]="['/detail/'+ item.macv]">{{ item.tencv }}</a></td>
+                              <td>{{ item.mota }}</td>
+                              <td>{{ item.ngaybd }}</td>
+                              <td>{{ item.ngaykt }}</td>
+                              <td>{{ item.trangthai }}</td>
+                              
+                            </tr>
+                          </ng-template>
+                        </p-table>
+                      </div>
+                      <div class="col-xs-12" style="text-align: right;">
+                        <ngb-pagination [collectionSize]="totalRecords" [pageSize]="pageSize" [(page)]="page" [maxSize]="10" [rotate]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+                      </div>
+                  </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>

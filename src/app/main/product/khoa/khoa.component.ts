@@ -75,7 +75,9 @@ export class KhoaComponent extends BaseComponent implements OnInit {
         let data_image = data == '' ? null : data;
         let tmp = {
            makhoa:value.makhoa,
-           tenkhoa:value.tenkhoa         
+           tenkhoa:value.tenkhoa ,
+           diachi : value.diachi,
+           ngaythanhlap: value.ngaythanhlap,        
           };
         this._api.post('/api/khoa/create-khoa',tmp).takeUntil(this.unsubscribe).subscribe(res => {
           alert('Thêm thành công');
@@ -88,7 +90,9 @@ export class KhoaComponent extends BaseComponent implements OnInit {
         let data_image = data == '' ? null : data;
         let tmp = {
            tenkhoa:value.tenkhoa,
-           makhoa:this.khoa.makhoa,          
+           makhoa:this.khoa.makhoa,     
+           diachi : value.diachi,
+           ngaythanhlap: value.ngaythanhlap,     
           };
         this._api.post('/api/khoa/update-khoa',tmp).takeUntil(this.unsubscribe).subscribe(res => {
           alert('Cập nhật thành công');
@@ -112,6 +116,8 @@ export class KhoaComponent extends BaseComponent implements OnInit {
     this.formdata = this.fb.group({
       'makhoa': ['', Validators.required],
       'tenkhoa': ['', Validators.required],
+      'diachi': ['', Validators.required],
+      'ngaythanhlap': ['', Validators.required],
     }, {
     }); 
   }
@@ -126,6 +132,8 @@ export class KhoaComponent extends BaseComponent implements OnInit {
       this.formdata = this.fb.group({
         'makhoa': ['', Validators.required],
         'tenkhoa': ['', Validators.required],
+        'diachi': ['', Validators.required],
+        'ngaythanhlap': ['', Validators.required],
       }, {
       });
       this.doneSetupForm = true;
@@ -143,6 +151,8 @@ export class KhoaComponent extends BaseComponent implements OnInit {
           this.formdata = this.fb.group({
             'makhoa': [this.khoa.makhoa, Validators.required],
             'tenkhoa': [this.khoa.tenkhoa, Validators.required],
+            'diachi': [this.khoa.diachi, Validators.required],
+            'ngaythanhlap': [this.khoa.ngaythanhlap, Validators.required],
           }, {
           }); 
           this.doneSetupForm = true;

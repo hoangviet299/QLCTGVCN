@@ -1,0 +1,109 @@
+<div class="breadcrumbs" id="breadcrumbs">
+    <ul class="breadcrumb">
+      <li>
+        <i class="ace-icon fa fa-home home-icon"></i>
+        <a >Hệ Thống Quản Lý Công Tác Giáo Viên Chủ Nhiệm</a>
+      </li> 
+    </ul><!-- /.breadcrumb -->
+  </div>
+    
+  
+  <div class="row">
+    <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+        <li role="presentation" class="active">
+            <a routerLink="../../" id="home-tab" style="margin-left: 20px;" >Lịch công tác</a>
+        </li>
+      
+        <li role="presentation" class="">
+            <a routerLink="../../dskhoa">Danh sách khoa</a>
+        </li>
+        <li role="presentation" class="">
+            <a routerLink="../../dssv">Danh sách sinh viên</a>
+        </li>
+  
+        <li role="presentation">
+            <a routerLink="congviec">Ghi chú công việc</a>
+        </li>
+        <li role="presentation">
+            <a routerLink="dashboard/baocao">Tạo Báo cáo tháng</a>
+        </li>
+       
+       
+        
+        <li role="presentation">
+            <a>Tiện ích</a>
+        </li>
+    </ul>
+  </div>
+  <div id="myTabContent" class="tab-content">
+    <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <!-- <h2>Lịch công tác giáo viên chủ nhiệm</h2> -->
+                        
+                        <div >
+                            <p-panel header="Tìm kiếm" [style]="{'margin-top': '2px'}">
+                                <form class="form-horizontal" role="form" [formGroup]="formsearch"  (ngSubmit)="search()">
+                                
+                                  <div class="form-group">
+                                    <label class="col-sm-1 control-label no-padding-right"> Tên GVCN</label>
+                                    <div class="col-sm-11">
+                                      <input formControlName="tengv"  type="text" placeholder="Tên GV" style="width: 100%;" />
+                                    </div>
+                                  </div>
+                                  <div class="form-group">
+                                    <label class="col-sm-1 control-label no-padding-right"></label>
+                                    <div class="col-sm-11">
+                                      <button (click)="search()" class="btn btn-sm btn-primary">Tìm kiếm</button>
+                                    </div>
+                                  </div>
+                                </form> 
+                              </p-panel>
+                              <p-table selectionMode="single" [value]="gvcns" styleClass="p-datatable-gridlines">
+                                <ng-template pTemplate="header">
+                                  <tr>
+                                    <th style="width: 70px; text-align: center;">STT</th>
+                                    <th style="width: 15%; text-align: left;">Tên GV</th>
+                                    <th style="width: 15%; text-align: left;">Giới Tính</th>
+                                    <th style="width: 15%; text-align: left;">Ngày Sinh</th>
+                                    <th style="width: 15%; text-align: left;">Quê Quán</th>
+                                    <th style="width: 15%; text-align: left;">Tên Khoa</th>
+                                    <th style="width: 20%; text-align: left;">Năm CN</th>
+                                    <th style="width: 20%; text-align: left;">SĐT</th>
+                                    <th style="width: 20%; text-align: left;">AVATA</th>
+                                    <th style="width: 120px; text-align: left;">Tác vụ</th>
+                                  </tr>
+                                </ng-template>
+                                <ng-template pTemplate="body" let-item  let-i="rowIndex">
+                                  <tr>
+                                    <td style="width: 70px; text-align: center;">{{ i + 1 }}</td>
+                                    <td>{{ item.tengv }}</td>
+                                    <td>{{ item.gioitinh }}</td>
+                                    <td>{{ item.ngaysinh }}</td>
+                                    <td>{{ item.quequan }}</td>
+                                    <td>{{ item.tenkhoa }}</td>
+                                    <td>{{ item.namcn }}</td>
+                                    <td>{{ item.sdt }}</td>
+                                    <td>{{ item.avata }}</td>
+                                    <td class="action-col" >
+                                      <div class="btn-group">
+                                        <button title="" class="btn btn-xs btn-white btn-default"  (click)="openUpdateModal(item)">  
+                                          <i class="ace-icon fa fa-edit"></i>
+                                        </button>
+                                        <button title="" class="btn btn-xs btn-white btn-default" (click)="onDelete(item)">
+                                          <i class="ace-icon fa fa-trash"></i>
+                                        </button>
+                                      </div>  
+                                    </td>
+                                  </tr>
+                                </ng-template>
+                              </p-table>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

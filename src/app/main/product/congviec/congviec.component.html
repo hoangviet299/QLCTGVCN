@@ -1,0 +1,176 @@
+<div class="breadcrumbs" id="breadcrumbs">
+    <ul class="breadcrumb">
+      <li>
+        <i class="ace-icon fa fa-home home-icon"></i>
+        <a href="#">Trang chủ</a>
+      </li>
+      <li class="active">Quản lý Công Việc</li>
+    </ul>
+    <div class="nav-search">
+      <p class="pull-right no-margin">
+        <a (click)="createModal()" class="btn btn-success btn-xs">
+          <i class="fa fa-plus"></i>&nbsp;Thêm
+        </a>
+      </p>
+    </div>
+  </div>
+  <div class="row">
+  
+    <div class="col-xs-12">
+      <!-- PAGE CONTENT BEGINS -->
+      <p-panel header="Tìm kiếm" [style]="{'margin-top': '2px'}">
+        <form class="form-horizontal" role="form" [formGroup]="formsearch"  (ngSubmit)="search()">
+        
+          <div class="form-group">
+            <label class="col-sm-1 control-label no-padding-right"> Tên Công Việc</label>
+            <div class="col-sm-11">
+              <input formControlName="tencv"  type="text" placeholder="Tên CV" style="width: 100%;" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-1 control-label no-padding-right"></label>
+            <div class="col-sm-11">
+              <button (click)="search()" class="btn btn-sm btn-primary">Tìm kiếm</button>
+            </div>
+          </div>
+        </form> 
+      </p-panel>
+      <p-table selectionMode="single" [value]="congviecs" styleClass="p-datatable-gridlines">
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width: 70px; text-align: center;">STT</th>
+            <th style="width: 15%; text-align: left;">Tên Công Việc</th>
+            <th style="width: 15%; text-align: left;">Mô Tả</th>
+            <th style="width: 15%; text-align: left;">Chi Tiết</th>
+            <th style="width: 15%; text-align: left;">Ngày Bắt Đầu</th>
+            <th style="width: 15%; text-align: left;">Ngày KT</th>
+            <th style="width: 15%; text-align: left;">Ghi Chú</th>
+            <th style="width: 20%; text-align: left;">Ngày tạo</th>
+            <th style="width: 20%; text-align: left;">Ngày sửa</th>
+            <th style="width: 20%; text-align: left;">Trạng Thái</th>
+            <th style="width: 120px; text-align: left;">Tác vụ</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item  let-i="rowIndex">
+          <tr>
+            <td style="width: 70px; text-align: center;">{{ i + 1 }}</td>
+            <td>{{ item.tencv }}</td>
+            <td>{{ item.mota }}</td>
+            <td>{{ item.chitiet }}</td>
+            <td>{{ item.ngaybd }}</td>
+            <td>{{ item.ngaykt }}</td>
+            <td>{{ item.ghichu }}</td>
+            <td>{{ item.ngaytao }}</td>
+            <td>{{ item.ngaysua }}</td>
+            <td>{{ item.trangthai }}</td>
+
+            <td class="action-col" >
+              <div class="btn-group">
+                <button title="" class="btn btn-xs btn-white btn-default"  (click)="openUpdateModal(item)">  
+                  <i class="ace-icon fa fa-edit"></i>
+                </button>
+                <button title="" class="btn btn-xs btn-white btn-default" (click)="onDelete(item)">
+                  <i class="ace-icon fa fa-trash"></i>
+                </button>
+              </div>  
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+      <!-- PAGE CONTENT ENDS -->
+    </div>
+    <div class="col-xs-12" style="text-align: right;">
+      <ngb-pagination [collectionSize]="totalRecords" [pageSize]="pageSize" [(page)]="page" [maxSize]="10" [rotate]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
+  <div *ngIf="showUpdateModal" id="createUserModal" class="modal fade" role="dialog">
+      <div class="modal-dialog modal-lg full-height-modal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4  *ngIf="isCreate" class="modal-title">Thêm thông tin Công Việc</h4>
+            <h4 *ngIf="!isCreate" class="modal-title">Sửa thông tin Công Việc</h4>
+          </div>
+          <form *ngIf="doneSetupForm" [formGroup]="formdata"  (ngSubmit)="onSubmit(formdata.value)" class="form-horizontal utehy-form">
+            <div class="modal-body no-padding">
+              <div class="form-group">
+                <label class="col-sm-2 control-label no-padding-right">Mã Công Việc(<span style="color: red;">*</span>)</label>
+                <div class="col-sm-5">
+                  <input type="text" placeholder="Mã Công Việc" formControlName="macv"/>
+                </div>
+                <label class="col-sm-2 control-label no-padding-right">Tên Công Việc(<span style="color: red;">*</span>)</label>
+                <div class="col-sm-5">
+                  <input type="text" placeholder="Tên Công Việc" formControlName="tencv"/>
+                  <div *ngIf="submitted && f.tencv.errors" class="invalid-feedback">
+                  </div>
+                </div>
+                <label class="col-sm-2 control-label no-padding-right">Mô Tả(<span style="color: red;">*</span>)</label>
+                <div class="col-sm-5">
+                  <input type="text" placeholder="Mô Tả" formControlName="mota"/>
+                  <div *ngIf="submitted && f.mota.errors" class="invalid-feedback">
+                  </div>
+                </div>
+                <label class="col-sm-2 control-label no-padding-right">Chi Tiết(<span style="color: red;">*</span>)</label>
+                <div class="col-sm-5">
+                  <input type="text" placeholder="Chi Tiết" formControlName="chitiet"/>
+                  <div *ngIf="submitted && f.chitiet.errors" class="invalid-feedback">
+                  </div>
+                </div>
+                <label class="col-sm-2 control-label no-padding-right">Ngày BĐ(<span style="color: red;">*</span>)</label>
+                <div class="col-sm-5">
+                  <input type="text" placeholder="Ngày Bắt đầu" formControlName="ngaybd"/>
+                  <div *ngIf="submitted && f.ngaybd.errors" class="invalid-feedback">
+                  </div>
+                </div>
+                <label class="col-sm-2 control-label no-padding-right">Ngày KT(<span style="color: red;">*</span>)</label>
+                <div class="col-sm-5">
+                  <input type="text" placeholder="Ngày KT" formControlName="ngaykt"/>
+                  <div *ngIf="submitted && f.ngaykt.errors" class="invalid-feedback">
+                  </div>
+                </div>
+                <label class="col-sm-2 control-label no-padding-right">Ghi Chú(<span style="color: red;">*</span>)</label>
+                <div class="col-sm-5">
+                  <input type="text" placeholder="Ghi Chú" formControlName="ghichu"/>
+                  <div *ngIf="submitted && f.ghichu.errors" class="invalid-feedback">
+                  </div>
+                </div>
+                
+                <label class="col-sm-2 control-label no-padding-right">Ngày Tạo(<span style="color: red;">*</span>)</label>
+                <div class="col-sm-5">
+                  <input type="text" placeholder="Ngày tạo" formControlName="ngaytao"/>
+                  <div *ngIf="submitted && f.ngaytao.errors" class="invalid-feedback">
+                  </div>
+                </div>
+                <label class="col-sm-2 control-label no-padding-right">Ngày Sửa(<span style="color: red;">*</span>)</label>
+                <div class="col-sm-5">
+                  <input type="text" placeholder="Ngày Sửa" formControlName="ngaysua"/>
+                  <div *ngIf="submitted && f.ngaysua.errors" class="invalid-feedback">
+                  </div>
+                </div>
+                
+                <label class="col-sm-2 control-label no-padding-right">Trạng Thái(<span style="color: red;">*</span>)</label>
+                <div class="col-sm-5">
+                  <input type="text" placeholder="Trạng Thái" formControlName="trangthai"/>
+                  <div *ngIf="submitted && f.trangthai.errors" class="invalid-feedback">
+                  </div>
+                </div>
+              </div>
+              
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default btn-sm" (click)="Reset()">
+              <i class="fa fa-bell"></i> Làm mới
+            </button>
+            <button type="submit" class="btn btn-success btn-sm btn-submit">
+              <i class="fa fa-save"></i> Đồng ý
+            </button>
+            <button type="button" class="btn btn-default btn-sm" (click)="closeModal()">
+              <i class="fa fa-times"></i> Đóng lại
+            </button>
+          </div>
+        </form>  
+        </div>
+      </div>
+    </div>
+   

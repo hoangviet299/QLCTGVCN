@@ -43,6 +43,8 @@
             <th style="width: 15%; text-align: left;">Giới Tính</th>
             <th style="width: 15%; text-align: left;">Ngày Sinh</th>
             <th style="width: 15%; text-align: left;">Quê Quán</th>
+            <th style="width: 15%; text-align: left;">Tên GVCN</th>
+            <th style="width: 15%; text-align: left;">Tên Lớp</th>
             <th style="width: 20%; text-align: left;">Năm Học</th>
             <th style="width: 20%; text-align: left;">SĐT</th>
             <th style="width: 20%; text-align: left;">AVATA</th>
@@ -56,9 +58,11 @@
             <td>{{ item.gioitinh }}</td>
             <td>{{ item.ngaysinh }}</td>
             <td>{{ item.quequan }}</td>
+            <td>{{ item.tengv }}</td>
+            <td>{{ item.tenlop }}</td>
             <td>{{ item.namhoc }}</td>
             <td>{{ item.sdt }}</td>
-            <td>{{ item.avata }}</td>
+            <td><img src="{{ item.avata }}" style="width:80px; height:80px;" alt=""></td>
             <td class="action-col" >
               <div class="btn-group">
                 <button title="" class="btn btn-xs btn-white btn-default"  (click)="openUpdateModal(item)">  
@@ -120,12 +124,12 @@
                   <div *ngIf="submitted && f.quequan.errors" class="invalid-feedback">
                   </div>
                 </div>
-                <label class="col-sm-2 control-label no-padding-right">Mã Lớp(<span style="color: red;">*</span>)</label>
+                <!-- <label class="col-sm-2 control-label no-padding-right">Mã Lớp(<span style="color: red;">*</span>)</label>
                 <div class="col-sm-5">
                   <input type="text" placeholder="Mã Lớp" formControlName="malop"/>
                   <div *ngIf="submitted && f.malop.errors" class="invalid-feedback">
                   </div>
-                </div>
+                </div> -->
                 <label class="col-sm-2 control-label no-padding-right">Mã GV(<span style="color: red;">*</span>)</label>
                 <div class="col-sm-5">
                   <input type="text" placeholder="Mã GV" formControlName="magv"/>
@@ -144,10 +148,21 @@
                   <div *ngIf="submitted && f.sdt.errors" class="invalid-feedback">
                   </div>
                 </div>
-                <label class="col-sm-2 control-label no-padding-right">AVATA(<span style="color: red;">*</span>)</label>
+                <!-- <label class="col-sm-2 control-label no-padding-right">AVATA(<span style="color: red;">*</span>)</label>
                 <div class="col-sm-5">
                   <input type="text" placeholder="AVATA" formControlName="avata"/>
                   <div *ngIf="submitted && f.avata.errors" class="invalid-feedback">
+                  </div>
+                </div> -->
+                <div class="form-group">
+                  <label class="col-sm-2 control-label no-padding-right"> Ảnh đại diện</label>
+                  <div class="col-sm-10">
+                    <p-fileUpload #file_image mode="advanced" [showUploadButton]="false" cancelLabel="Hủy" chooseLabel ="Chọn ảnh"   multiple="false" accept="image/*" maxFileSize="1000000">
+                        <ng-template pTemplate="content">
+                            <img *ngIf="sinhvien && sinhvien.avata" style="height: 100px;width: 100px;" [src]="sinhvien.avata">
+                        </ng-template>
+                  </p-fileUpload>
+                 
                   </div>
                 </div>
                 <label class="col-sm-2 control-label no-padding-right">Trạng Thái(<span style="color: red;">*</span>)</label>

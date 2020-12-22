@@ -68,7 +68,7 @@ export class LophocComponent extends BaseComponent implements OnInit {
            malop:value.malop,
            tenlop:value.tenlop,
            makhoa:value.makhoa,
-           diachi:value.diachi          
+           diachilop:value.diachilop          
           };
         this._api.post('/api/LopHoc/create-lophoc',tmp).takeUntil(this.unsubscribe).subscribe(res => {
           alert('Thêm thành công');
@@ -79,7 +79,7 @@ export class LophocComponent extends BaseComponent implements OnInit {
         let tmp = {
            tenlop:value.tenlop,
            makhoa:value.makhoa,
-           diachi:value.diachi,
+           diachilop:value.diachilop,
            malop:this.lophoc.malop,          
           };
         this._api.post('/api/LopHoc/update-lophoc',tmp).takeUntil(this.unsubscribe).subscribe(res => {
@@ -104,7 +104,7 @@ export class LophocComponent extends BaseComponent implements OnInit {
       'malop': ['', Validators.required],
       'tenlop': ['', Validators.required],
       'makhoa': ['', Validators.required],
-      'diachi': ['', Validators.required],
+      'diachilop': ['', Validators.required],
     }, {
     }); 
   }
@@ -120,7 +120,7 @@ export class LophocComponent extends BaseComponent implements OnInit {
         'malop': ['', Validators.required],
         'tenlop': ['', Validators.required],
         'makhoa': ['', Validators.required],
-        'diachi': ['', Validators.required],
+        'diachilop': ['', Validators.required],
       }, {
       });
       this.doneSetupForm = true;
@@ -139,7 +139,7 @@ export class LophocComponent extends BaseComponent implements OnInit {
             'malop': [this.lophoc.malop, Validators.required],
             'tenlop': [this.lophoc.tenlop, Validators.required],
             'makhoa': [this.lophoc.makhoa, Validators.required],
-            'diachi': [this.lophoc.diachi, Validators.required],
+            'diachilop': [this.lophoc.diachilop, Validators.required],
           }, {
           }); 
           this.doneSetupForm = true;
